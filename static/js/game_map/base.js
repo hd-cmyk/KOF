@@ -8,7 +8,12 @@ export class GameMap extends AcGameObject{
         this.ctx = this.$canvas[0].getContext('2d');
         this.root.$kof.append(this.$canvas);
         this.$canvas.focus();
-        this.controller = new Controller(this.$canvas)
+        this.controller = new Controller(this.$canvas);
+        this.root.$kof.append($(`        <div class="kof-head">
+            <div class="kof-head-hp-0"><div></div></div>
+            <div class="kof-head-timer">60</div>
+            <div class="kof-head-hp-1"><div></div></div>
+        </div>`))
     }
     start() {
         
