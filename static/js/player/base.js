@@ -24,7 +24,8 @@ export class Player extends AcGameObject{
         this.animations = new Map();
         this.frame_current_cnt = 0;//从角色被创建以来，渲染的“总帧数”
         this.hp = 100;
-        this.$hp = this.root.$kof.find(`.kof-head-hp-${this.id}>div`)
+        this.$hp = this.root.$kof.find(`.kof-head-hp-${this.id}>div`);
+        this.$hp_div = this.$hp.find('div')
     }
     start() {
         
@@ -51,13 +52,17 @@ export class Player extends AcGameObject{
         this.status = 5;
         this.frame_current_cnt = 0;
         this.hp = Math.max(this.hp - 20, 0);
+        this.$hp_div.animate({
+            width: this.$hp.parent().width() * this.hp / 100
+        }, 300);
         this.$hp.animate({
             width: this.$hp.parent().width() * this.hp / 100
-        }, 'slow');
+        }, 800);
         
         if (this.hp <= 0) {
             this.status = 6;
             this.frame_current_cnt = 0;
+            this.vx = 0;
         }
         
     }
